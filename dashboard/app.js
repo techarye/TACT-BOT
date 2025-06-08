@@ -64,7 +64,7 @@ module.exports.launch = async (client) => {
     .use(CheckAuth, function (req, res) {
       res.status(404).render("404", {
         user: req.userInfos,
-        currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+        currentURL: `${req.client.config.DASHBOARD.baseURL}${req.originalUrl}`,
       });
     })
     .use(CheckAuth, function (err, req, res) {
@@ -72,7 +72,7 @@ module.exports.launch = async (client) => {
       if (!req.user) return res.redirect("/");
       res.status(500).render("500", {
         user: req.userInfos,
-        currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+        currentURL: `${req.client.config.DASHBOARD.baseURL}${req.originalUrl}`,
       });
     });
 

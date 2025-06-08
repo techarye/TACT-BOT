@@ -42,9 +42,9 @@ module.exports = {
 
   DASHBOARD: {
     enabled: true, // enable or disable dashboard
-    baseURL: "http://localhost:3001", // base url
-    failureURL: "http://localhost:3001", // failure redirect url
-    port: "3001", // port to run the bot on
+    baseURL: process.env.DASHBOARD_BASE_URL || "https://tact-bot.onrender.com", // base url
+    failureURL: process.env.DASHBOARD_FAILURE_URL || "https://tact-bot.onrender.com", // failure redirect url
+    port: process.env.PORT || "3001", // port to run the bot on
   },
 
   // PLUGINS
