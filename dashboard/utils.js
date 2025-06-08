@@ -17,10 +17,10 @@ async function fetchUser(userData, client, query) {
       }
       guild.settingsUrl = client.guilds.cache.get(guild.id)
         ? `/manage/${guild.id}/`
-        : (client.user && client.user.id ? `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}` : '#');
+        : (client.user && client.user.id ? `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&redirect_uri=https%3A%2F%2Ftact-bot.onrender.com%2Fselector` : '#');
       guild.statsUrl = client.guilds.cache.get(guild.id)
         ? `/stats/${guild.id}/`
-        : (client.user && client.user.id ? `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}` : '#');
+        : (client.user && client.user.id ? `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&redirect_uri=https%3A%2F%2Ftact-bot.onrender.com%2Fselector` : '#');
       guild.iconURL = guild.icon
         ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`
         : "https://discordemoji.com/assets/emoji/discordcry.png";

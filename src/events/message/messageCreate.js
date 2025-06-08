@@ -1,4 +1,4 @@
-const { commandHandler, automodHandler } = require("@src/handlers");
+const { commandHandler, automodHandler, statsHandler } = require("@src/handlers");
 const { PREFIX_COMMANDS } = require("@root/config");
 const { getSettings } = require("@schemas/Guild");
 

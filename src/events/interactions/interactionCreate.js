@@ -5,6 +5,7 @@ const {
   statsHandler
 } = require("@src/handlers");
 const { InteractionType } = require("discord.js");
+const { getSettings } = require("@src/database/schemas/Guild");
 
 /**
  * @param {import('@src/structures').BotClient} client
@@ -19,6 +20,9 @@ module.exports = async (client, interaction) => {
       })
       .catch(() => {});
   }
+
+  // Fetch settings for the guild
+  const settings = await getSettings(interaction.guild);
 
   // Slash Commands
   if (interaction.isChatInputCommand()) {
@@ -57,9 +61,8 @@ module.exports = async (client, interaction) => {
     }
   }
 
-  // Before line 60, ensure settings is defined, for example:
-  const settings = {}; // <-- Replace with actual settings retrieval logic
-
   // track stats
-  if (settings.stats.enabled) statsHandler.trackInteractionStats(interaction).catch(() => {});
+  if (settings.stats && settings.stats.enabled) {
+    statsHandler.trackInteractionStats(interaction).catch(() => {});
+  }
 };
