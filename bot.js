@@ -170,17 +170,22 @@ process.on("SIGTERM", () => shutdown("SIGTERM"));
               `📌 **Changelogs:** Use \`/changelogs\` to see the latest updates.\n` +
               `📚 **Commands:** Use \`/help\` to view all available commands.\n` +
               `ℹ️ **Bot Info:** Use \`/botinfo\` to learn more about what I can do.\n` +
-              `👨‍💻 **Developer Info:** Use \`/devinfo\` to find out who's behind TACT.`
+              `👨‍💻 **Developer Info:** Use \`/devinfo\` to find out who's behind TACT.\n\n`
             )
             .setFooter({ text: "Welcome aboard!" })
             .setTimestamp();
 
-          const button = new ButtonBuilder()
+          const dashboardButton = new ButtonBuilder()
+            .setLabel("Open Dashboard")
+            .setStyle(ButtonStyle.Link)
+            .setURL("https://tact-bot.onrender.com/");
+
+          const supportButton = new ButtonBuilder()
             .setLabel("Join Support Server")
             .setStyle(ButtonStyle.Link)
             .setURL("https://discord.gg/M7yyGfKdKx");
 
-          const row = new ActionRowBuilder().addComponents(button);
+          const row = new ActionRowBuilder().addComponents(dashboardButton, supportButton);
 
           let targetChannel = guild.systemChannel;
 
