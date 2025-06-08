@@ -24,6 +24,8 @@ module.exports.launch = async (client) => {
   const db = await mongoose.initializeMongoose();
 
   /* App configuration */
+  const PORT = process.env.PORT || config.DASHBOARD.port || 3000;
+  const SESSION_SECRET = process.env.SESSION_PASSWORD || "changeme";
   app
     .use(express.json()) // For post methods
     .use(express.urlencoded({ extended: true }))
@@ -31,10 +33,10 @@ module.exports.launch = async (client) => {
     .set("view engine", "ejs")
     .use(express.static(path.join(__dirname, "/public"))) // Set the css and js folder to ./public
     .set("views", path.join(__dirname, "/views")) // Set the ejs templates to ./views
-    .set("port", config.DASHBOARD.port) // Set the dashboard port
+    .set("port", PORT) // Set the dashboard port
     .use(
       session({
-        secret: process.env.SESSION_PASSWORD,
+        secret: SESSION_SECRET,
         cookie: { maxAge: 336 * 60 * 60 * 1000 },
         name: "djs_connection_cookie",
         resave: true,
@@ -75,7 +77,7 @@ module.exports.launch = async (client) => {
     });
 
   /* Start */
-  app.listen(app.get("port"), () => {
+  app.listen(app.get("port"), "0.0.0.0", () => {
     client.logger.success("Dashboard is listening on port " + app.get("port"));
   });
 };
