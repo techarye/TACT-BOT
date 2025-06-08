@@ -20,4 +20,5 @@
 /.nuxt/nuxt.config.ts
 /.nuxt/nuxt.config.mjs
 .history
-/.vscode    
+/.vscode
+/database
